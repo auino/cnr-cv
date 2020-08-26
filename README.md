@@ -41,6 +41,8 @@ Per ogni oggetto:
 * `list` identifica la lista di oggetti da considerare per il "riempimento" della voce corrente, a partire dalla loro definizione all'interno del file `data.py`
 * `mappings` identifica il match da considerare, come definito sopra
 
+In modo analogo, all'interno del file `mappings.py`, impostare l'oggetto `headers_mappings` in base alle proprie necessità.
+
 Fare in generale riferimento all'esempio fornito per comprendere al meglio la struttura considerata.
 
 ### Esecuzione ###
@@ -51,7 +53,11 @@ python convert.py
 ```
 
 Verrà generato il file `output.docx` del proprio curriculum vitae.
-Come operazione finale, controllare il risultato prodotto (nell'esempio fornito, è ad esempio importante ricordarsi di aggiungere i propri riferimenti nella prima pagina) e generare un eventuale file PDF definitivo.
+Come operazione finale, controllare il risultato prodotto e generare un eventuale file PDF definitivo.
+
+### TODO ###
+
+* Migliorare la leggibilità del codice
 
 ### Contatti ###
 

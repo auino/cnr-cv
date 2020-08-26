@@ -5,6 +5,27 @@ PUBLICATIONS_JOURNALS = reorder(setattribute(PUBLICATIONS_JOURNALS, 'type', 'Art
 PUBLICATIONS_CONFERENCES = reorder(setattribute(PUBLICATIONS_CONFERENCES, 'type', 'Conference Proceeding'), 'year')
 #ALL_PUBLICATIONS = reorder(PUBLICATIONS_JOURNALS + PUBLICATIONS_CONFERENCES, 'year')
 
+headers_mappings = [
+	{
+		'enabled':True,
+		'paragraphindex':9,
+		'style':'bold',
+		'text': 'CANDIDATO: ENRICO CAMBIASO'
+	},
+	{
+		'enabled':True,
+		'paragraphindex':11,
+		'style':'bold',
+		'text': 'MATRICOLA: 17440'
+	},
+	{
+		'enabled':True,
+		'paragraphindex':13,
+		'style':'bold',
+		'text': 'STRUTTURA DI APPARTENENZA: Istituto di Elettronica e di Ingegneria dell\'Informazione e delle Telecomunicazioni (IEIIT)'
+	}
+]
+
 mappings = [
 	{
 		'enabled':True,
