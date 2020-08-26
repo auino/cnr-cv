@@ -17,7 +17,7 @@ python -V
 ```
 2. Clonare il repository:
 ```
-git clone http://....
+git clone https://github.com/auino/cnr-cv.git
 ```
 3. Accedere alla directory del repository:
 ```
