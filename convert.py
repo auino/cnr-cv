@@ -1,6 +1,5 @@
 from docx import Document
 
-from data import *
 from utils import addtables, deletetables
 from mappings import *
 

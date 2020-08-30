@@ -1,3 +1,4 @@
+import json
 from copy import deepcopy
 from docx.text.paragraph import Paragraph
 from docx.oxml.xmlchemy import OxmlElement
@@ -21,6 +22,27 @@ def deletetables(doc, usedtableindexes, t=''):
 		doc.tables[i]._element.clear()
 		doc.tables[i]._element.append(newpar_space._element)
 		doc.tables[i]._element.append(newpar._element)
+
+# loads a json list object from a txt file
+def loadfromtxtfile(filename):
+	f = open(filename, 'r')
+	res = []
+	for el in f.read().split('\n\n'):
+		v = {}
+		for row in el.split('\n'):
+			if len(row) > 0 and row[0] == '#': continue
+			if not ':' in row: continue
+			i = row.index(':')
+			key = row[:i].strip()
+			value = row[i+1:].strip()
+			v[key] = value
+		res.append(v)
+	return res
+
+# loads a json list object from a json file
+def loadfromjsonfile(filename):
+	f = open(filename, 'r')
+	return json.loads(f.read())
 
 # clones the table with index "index" on the docx document "doc", by taking the list "l" of contents (from data.py) and the mappings "mappings" (from mappings.py), optionally, replacing/deleting the content on the original (cloned) table
 def addtables(doc, index, l, mappings, replaceoriginaltable):

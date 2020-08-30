@@ -1,0 +1,15 @@
+# this is a comment
+# list of objects, separated by two consecutive newlines
+type: Monography
+title: My Monography 1
+pages: 10
+isbn: isbn-1
+year: 2020
+notes: Monography number 1
+
+type: Monography
+title: My Monography 2
+pages: 20
+isbn: isbn-2
+year: 2019
+notes: Monography number 2

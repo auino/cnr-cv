@@ -31,10 +31,7 @@ pip install -r requirements.txt
 
 ### Configurazione ###
 
-Aprire il file `data.py` e inserire i propri elementi del curriculum vitae, in formato JSON, raggruppati secondo le proprie preferenze (nell'esempio, si distingue tra contributi su rivista e contributi a conferenze di natura scientifica).
-La struttura degli oggetti JSON non è fissata ed è aperta in base alle proprie preferenze, benché si mantenga la stessa struttura per tutti gli oggetti dello stesso tipo.
-
-Dunque, aprire il file `mappings.py` ed impostare l'oggetto `mappings` in modo da configurare il match tra gli oggetti JSON memorizzati in `data.py` e il contenuto da riportare all'interno del file Word, come da template CNR (rappresentato dal file `input.docx`).
+Aprire il file `mappings.py` ed impostare l'oggetto `mappings` in modo da configurare il match tra gli oggetti JSON memorizzati in `data.py` e il contenuto da riportare all'interno del file Word, come da template CNR (rappresentato dal file `input.docx`).
 Per ogni oggetto:
 * `enabled` identifica se la creazione degli oggetti per la voce corrente è abilitata o meno (se disabilitata, verrà ignorata e gli oggetti non verranno inclusi nel CV prodotto)
 * `tableindex` identifica l'indice della tabella nel file `input.docx`, a partire da `0`
@@ -44,6 +41,17 @@ Per ogni oggetto:
 In modo analogo, all'interno del file `mappings.py`, impostare l'oggetto `headers_mappings` in base alle proprie necessità.
 
 Fare in generale riferimento all'esempio fornito per comprendere al meglio la struttura considerata.
+
+#### Tipologia di input ####
+
+Per ogni tipologia di input, è stato fornito un esempio.
+Inserire i propri elementi del curriculum vitae, secondo il formato preferito, raggruppati secondo le proprie preferenze (ad esempio, distinguendo tra contributi su rivista e contributi a conferenze di natura scientifica, monografie e brevetti).
+La struttura degli oggetti non è fissata ed è aperta in base alle proprie preferenze, benché si mantenga la stessa struttura per tutti gli oggetti dello stesso tipo.
+
+Sono disponibili tre tipologie di input:
+* **Formato TXT:** (fare riferimento al file `data_monografies.txt`): in questo caso, all'interno di un file TXT, inserire gli elementi, separandoli tra loro con due caratteri newline; per ogni elemento, una riga coinciderà con un attributo, e chiave e valore considerati verranno separati dal carattere `:` (ad esempio: `title:My title` assegnerà alla chiave `title` il valore `My title`)
+* **Formato JSON per ogni tipologia di elemento:** (fare riferimento al file `data_patents.json`): in questo caso, all'interno di un file JSON, inserire l'oggetto JSON che rappresenta la lista di elementi da inserire all'interno del curriculum vitae, per la voce/il raggruppamento corrente (es. tutte le pubblicazioni su rivista internazionale)
+* **Formato JSON con più elementi:** (fare riferimento al file `data_publications.py`): in questo caso, all'interno di un file Python, inserire le variabili desiderate, con contenuto espresso in formato JSON
 
 ### Esecuzione ###
 
