@@ -11,6 +11,16 @@ def setattribute(x, k, v):
 	for e in x: e[k] = v
 	return x
 
+# filters a given list based from key and a list of values: if condition is satisfied, the elements are dropped out from the list
+def filterlist(l, key, values):
+	if len(values) <= 0: return l
+	r = []
+	for e in l:
+		if e.get(key) is None: continue
+		if e[key] in values: continue
+		r.append(e)
+	return r
+
 # starting from a docx document "doc", deletes all unrequired tables (tables with no elements in the cv), defined as all the tables expect used ones (defined by their index through the "usedtableindex" list), and optionally replaces the deleted tables content with text "t"
 def deletetables(doc, usedtableindexes, t=''):
 	for i in range(0, len(doc.tables)):

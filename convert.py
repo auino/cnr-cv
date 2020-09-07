@@ -1,6 +1,6 @@
 from docx import Document
 
-from utils import addtables, deletetables
+from utils import addtables, deletetables, filterlist
 from mappings import *
 
 # should the original table be deleted/replaced with content or kept as reference?
@@ -10,6 +10,12 @@ REPLACEORIGINALTABLE = True
 DELETEUNUSEDTABLES = True
 # replacement text when unused tables are deleted
 DELETEUNUSEDTABLES_TEXT = 'Nessun elemento in questa categoria.'
+
+# years to exclude
+# list of strings of excluded years (empty list "[]"" to ignore)
+EXCLUDED_YEARS = []
+# field/attribute name to consider (if the specified attribute is not present, the element will be included in your cv)
+EXCLUDED_YEARS_FIELD = 'year'
 
 # loading the template document
 doc = Document('input.docx')

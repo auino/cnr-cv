@@ -66,6 +66,7 @@ Come operazione finale, controllare il risultato prodotto e generare un eventual
 ### TODO ###
 
 * Migliorare la leggibilità del codice
+* Descrivere i metodi supportati
 
 ### Contatti ###
 
