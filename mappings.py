@@ -7,6 +7,8 @@ PUBLICATIONS_CONFERENCES = reorder(setattribute(PUBLICATIONS_CONFERENCES, 'type'
 MONOGRAFIES = reorder(loadfromtxtfile('data_monografies.txt'), 'year')
 PATENTS = reorder(loadfromjsonfile('data_patents.json'), 'year')
 
+separator = '\n\n'
+
 headers_mappings = [
 	{
 		'enabled':True,
@@ -45,7 +47,7 @@ mappings = [
 			{'row':8, 'text':'Impact Factor rivista: {V}', 'marker':{'type':'field', 'name':'{V}', 'field':'impactfactor'}},
 			{'row':9, 'text':'Categoria della rivista secondo classificazione ANVUR: {V}', 'marker':{'type':'field', 'name':'{V}', 'field':'anvurcategory'}},
 			{'row':10, 'text':'Numero citazioni: {V}', 'marker':{'type':'field', 'name':'{V}', 'field':'citation'}},
-			{'row':11, 'text':'Altre informazioni: {V}', 'marker':{'type':'multiple','name':'{V}','separator':'. ','values':[{'text':'Riferimenti: {V}','marker':{'type':'field','name':'{V}','field':'reference'}},{'text':'DOI: {V}','marker':{'type':'field','name':'{V}','field':'doi'}}]}}
+			{'row':11, 'text':'Altre informazioni: {V}', 'marker':{'type':'multiple','name':'{V}','separator':separator,'values':[{'text':'Riferimenti: {V}','marker':{'type':'field','name':'{V}','field':'reference'}},{'text':'DOI: {V}','marker':{'type':'field','name':'{V}','field':'doi'}}]}}
 		]
 	},
 	{
@@ -61,7 +63,7 @@ mappings = [
 			{'row':5, 'text':'Elenco autori: {V}', 'marker':{'type':'field', 'name':'{V}', 'field':'authors'}},
 			{'row':6, 'text':'Codice identificativo (ISBN o ISSN): {V}', 'marker':{'type':'field', 'name':'{V}', 'field':'isbn'}},
 			{'row':7, 'text':'Anno di pubblicazione: {V}', 'marker':{'type':'field', 'name':'{V}', 'field':'year'}},
-			{'row':8, 'text':'Altre informazioni: {V}', 'marker':{'type':'multiple','name':'{V}','separator':'. ','values':[{'text':'Libro: {V}','marker':{'type':'field','name':'{V}','field':'book'}},{'text':'Conferenza: {V}','marker':{'type':'field','name':'{V}','field':'conference'}},{'text':'DOI: {V}','marker':{'type':'field','name':'{V}','field':'doi'}}]}}
+			{'row':8, 'text':'Altre informazioni: {V}', 'marker':{'type':'multiple','name':'{V}','separator':separator,'values':[{'text':'Libro: {V}','marker':{'type':'field','name':'{V}','field':'book'}},{'text':'Conferenza: {V}','marker':{'type':'field','name':'{V}','field':'conference'}},{'text':'DOI: {V}','marker':{'type':'field','name':'{V}','field':'doi'}}]}}
 		]
 	},
 	{
