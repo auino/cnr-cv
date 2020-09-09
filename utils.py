@@ -16,8 +16,7 @@ def filterlist(l, key, values):
 	if len(values) <= 0: return l
 	r = []
 	for e in l:
-		if e.get(key) is None: continue
-		if e[key] in values: continue
+		if e.get(key) in values: continue
 		r.append(e)
 	return r
 
@@ -55,7 +54,7 @@ def loadfromjsonfile(filename):
 	return json.loads(f.read())
 
 # clones the table with index "index" on the docx document "doc", by taking the list "l" of contents (from data.py) and the mappings "mappings" (from mappings.py), optionally, replacing/deleting the content on the original (cloned) table
-def addtables(doc, index, l, mappings, replaceoriginaltable):
+def addtables(doc, index, l, mappings, replaceoriginaltable, beginwithseparator=False):
 	t = doc.tables[index]
 	newtables = []
 	for i in range(0, len(l)): newtables.append(deepcopy(t))
@@ -73,8 +72,10 @@ def addtables(doc, index, l, mappings, replaceoriginaltable):
 				if m['marker']['type'] == 'field': newtable.cell(int(m['row']),0).text = m['text'].replace(m['marker']['name'], str(obj[m['marker']['field']]))
 				if m['marker']['type'] == 'multiple':
 					v = ''
+					if beginwithseparator: v = m['marker']['separator']
 					for mm in m['marker']['values']:
 						if mm['marker']['type'] == 'field' and obj.get(mm['marker']['field']) != None: v += mm['text'].replace(mm['marker']['name'], str(obj.get(mm['marker']['field'])))+m['marker']['separator']
+					if v[-(len(m['marker']['separator'])):] == m['marker']['separator']: v = v[:-len(m['marker']['separator'])]
 					newtable.cell(int(m['row']),0).text = m['text'].replace(m['marker']['name'], v)
 			except: newtable.cell(int(m['row']),0).text = m['text'].replace(m['marker']['name'], '-')
 			if m.get('style') != None:
