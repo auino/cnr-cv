@@ -1,4 +1,4 @@
 [
-	{"type":"Internazionale", "title":"Brevetto 1", "number":"0001", "authors":"Enrico Cambiaso", "role":"ideator", "year":"2020", "contracts":"Contratto 1, con licenza esclusiva", "diffusionlevel":"Internazionale", "notes":"Patent number 1"},
-	{"type":"Nazionale", "title":"Brevetto 2", "number":"0002", "authors":"Enrico Cambiaso", "role":"ideator", "year":"2019", "contracts":"Contratto 2, con licenza non esclusiva", "diffusionlevel":"Internazionale", "notes":"Patent number 2"}
+	{"type":"Brevetto internazionale", "title":"Brevetto 1", "number":"0001", "authors":"Enrico Cambiaso", "role":"ideator", "year":"2020", "contracts":"Contratto 1, con licenza esclusiva", "diffusionlevel":"Internazionale", "notes":"Patent number 1"},
+	{"type":"Brevetto nazionale", "title":"Brevetto 2", "number":"0002", "authors":"Enrico Cambiaso", "role":"ideator", "year":"2019", "contracts":"Contratto 2, con licenza non esclusiva", "diffusionlevel":"Internazionale", "notes":"Patent number 2"}
 ]

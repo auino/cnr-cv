@@ -53,26 +53,29 @@ def loadfromjsonfile(filename):
 	f = open(filename, 'r')
 	return json.loads(f.read())
 
-# clones the table with index "index" on the docx document "doc", by taking the list "l" of contents (from data.py) and the mappings "mappings" (from mappings.py), optionally, replacing/deleting the content on the original (cloned) table
-def addtables(doc, index, l, mappings, replaceoriginaltable, beginwithseparator=False):
+# clones the table with index "index" (starting from currentindex) on the docx document "doc", by taking the list "l" of contents (from data.py) and the mappings "mappings" (from mappings.py), optionally, replacing/deleting the content on the original (cloned) table
+def addtables(currentindex, doc, index, l, mappings, replaceoriginaltable, positionindex=None, directlyappend=True):
 	t = doc.tables[index]
+	if positionindex is None: positionindex = index
 	newtables = []
 	for i in range(0, len(l)): newtables.append(deepcopy(t))
 	for i in range(0, len(l)):
-		newpar = Paragraph(OxmlElement("w:p"), doc.tables[index])
+		newpar = Paragraph(OxmlElement("w:p"), doc.tables[positionindex])
 		newpar.add_run('')
-		newpar_space = Paragraph(OxmlElement("w:p"), doc.tables[index])
+		newpar_space = Paragraph(OxmlElement("w:p"), doc.tables[positionindex])
 		newpar_space.add_run('')
 		obj = l[i]
 		newtable = newtables[i]
-		if replaceoriginaltable and i == 0: newtable = doc.tables[index]
+		if replaceoriginaltable and i == 0: newtable = doc.tables[positionindex]
 		for m in mappings:
 			try:
-				if m['marker']['type'] == 'index': newtable.cell(int(m['row']),0).text = m['text'].replace(m['marker']['name'], str(i+1))
+				#if m['marker']['type'] == 'index': newtable.cell(int(m['row']),0).text = m['text'].replace(m['marker']['name'], str(i+1))
+				if m['marker']['type'] == 'index':
+					newtable.cell(int(m['row']),0).text = m['text'].replace(m['marker']['name'], str(currentindex))
+					currentindex += 1
 				if m['marker']['type'] == 'field': newtable.cell(int(m['row']),0).text = m['text'].replace(m['marker']['name'], str(obj[m['marker']['field']]))
 				if m['marker']['type'] == 'multiple':
-					v = ''
-					if beginwithseparator: v = m['marker']['separator']
+					v = m['marker']['separator']
 					for mm in m['marker']['values']:
 						if mm['marker']['type'] == 'field' and obj.get(mm['marker']['field']) != None: v += mm['text'].replace(mm['marker']['name'], str(obj.get(mm['marker']['field'])))+m['marker']['separator']
 					if v[-(len(m['marker']['separator'])):] == m['marker']['separator']: v = v[:-len(m['marker']['separator'])]
@@ -83,5 +86,7 @@ def addtables(doc, index, l, mappings, replaceoriginaltable, beginwithseparator=
 		if i == 0: newpar._element.append(newpar_space._element)
 		if i > 0 or not replaceoriginaltable:
 			newpar._element.append(newtable._tbl)
-			doc.tables[index]._tbl.append(newpar._element)
-			doc.tables[index]._tbl.append(newtable._tbl)
+			if directlyappend:
+				doc.tables[positionindex]._tbl.append(newpar._element)
+				doc.tables[positionindex]._tbl.append(newtable._tbl)
+	return {'currentindex':currentindex, 'elementstoappend':[newpar._element,newtable._tbl]}
